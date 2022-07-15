@@ -1,0 +1,33 @@
+# h2 DB를 별도로 설치한 후, 접속이 안 될때는 spring-boot로 기동하면서 생성한 후에, h2를 띄워서 접속하면 된다.
+# 단, 파일로 접속하면 h2나 spring-boot나 하나만 DB에 접속가능하다.
+# 그래서 tcp로 접속해야 여러 연결이 가능하다.
+
+# spring-boot 2.4 이후는, jdbc-url, username, password 다음과 같이 지켜야한다.
+spring:
+  datasource:
+#    data: classpath:sql/import.sql
+    hikari:
+      platform: h2
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: org.h2.Driver
+#      jdbc-url: jdbc:h2:~/my-test-db;DB_CLOSE_ON_EXIT=TRUE;DB_CLOSE_DELAY=-1 # 파일접속
+      jdbc-url:  jdbc:h2:tcp://localhost/~/my-test-db # tcp 접속
+      pool-name: TEST-SPRING-BOOT-JPA
+      username: sa
+      password: sa
+  h2:
+    console:
+      enabled: false # 별도 설치 없으면 true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create # 생성하고 그대로
+#      ddl-auto: create-drop
+    properties:
+      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        show_sql: true # 이것 대신 log로 남기는게 낫다.
+        format_sql: true

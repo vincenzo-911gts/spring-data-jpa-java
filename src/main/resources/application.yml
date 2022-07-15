@@ -17,11 +17,27 @@ server:
     threads:
       max: 100
 
+logging:
+  level:
+    root: DEBUG
+    #    io.lettuce.core: INFO
+    #    org.apache.catalina: INFO
+    #    org.apache.coyote: INFO
+    #    org.apache.tomcat: INFO
+    org.hibernate.SQL: DEBUG
+#    org.hibernate.type: trace # 파라메타 바인딩
+#    org.springframework: INFO
+#    org.springframework.cache: INFO
+#    org.springframework.data: INFO
+#    org.springframework.transaction.interceptor: TRACE
+#    org.springframework.transaction.support.AbstractPlatformTransactionManager: TRACE
+
+
 spring:
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
-  #  profiles:
-  #    active: local
+#  profiles:
+#    active: local
 #  datasource:
 #    username: sa
 #    password:
@@ -36,18 +52,3 @@ spring:
   jackson:
     locale: ko_KR
     time-zone: Asia/Seoul
-
-logging:
-  level:
-    root: DEBUG
-#    io.lettuce.core: INFO
-#    org.apache.catalina: INFO
-#    org.apache.coyote: INFO
-#    org.apache.tomcat: INFO
-    org.hibernate.SQL: DEBUG
-#    org.hibernate.type: trace # 파라메타 바인딩
-#    org.springframework: INFO
-#    org.springframework.cache: INFO
-#    org.springframework.data: INFO
-#    org.springframework.transaction.interceptor: TRACE
-#    org.springframework.transaction.support.AbstractPlatformTransactionManager: TRACE
