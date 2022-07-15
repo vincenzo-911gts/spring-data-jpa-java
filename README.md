@@ -33,11 +33,8 @@ docker-compose up -d
 ```bash
 ./gradlew bootRun
 ./gradlew clean bootRun -Dspring.profiles.active=h2
-./gradlew clean bootRun --args='--spring.profiles.active=default'
 ./gradlew clean bootRun --args='--spring.profiles.active=h2'
 
-or run with jar
- java -jar build/libs/cream-bun-api-1.0-SNAPSHOT.jar -Dspring.profiles.active=default
 ```
 
 ## H2DB 접속
@@ -59,4 +56,11 @@ Local
 ###### application-h2.yml
 ```
 spring boot 2.1.10 이후로 h2 사용 시 jdbc-url에 MODE=MYSQL을 붙여줘야하며, MySQL5InnoDBDialect는 deprecated되어서 MySQL57Dialect를 사용해야한다고 함
+```
+
+###### resources/import.sql
+```
+스프링부트가 실행될 때 자동으로 해당 파일의 쿼리를 실행
+- import.sql은 하이버테이트가 실행
+- data.sql은 스프링 JDBC가 실행
 ```
